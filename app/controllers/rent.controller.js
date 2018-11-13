@@ -6,7 +6,7 @@ cala baza, sprawdzanie magazu, dany uzytkownik robi rezerwacje
 // Create and Save a new User
 exports.create = (req, res) => {
     // Validate request
-    if(!req.body.Surname) { //imie tez nie moze byc puste
+    if (!req.body.Surname) { //imie tez nie moze byc puste
         return res.status(400).send({
             message: "Imie nie moze byc puste!"
         });
@@ -46,14 +46,14 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     User.findById(req.params.userId)
         .then(user => {
-            if(!user) {
+            if (!user) {
                 return res.status(404).send({
                     message: "User z nie znaleziony! ID: " + req.params.userId
                 });
             }
             res.send(user);
         }).catch(err => {
-        if(err.kind === 'ObjectId') {
+        if (err.kind === 'ObjectId') {
             return res.status(404).send({
                 message: "User z nie znaleziony! ID: " + req.params.userId
             });
@@ -68,7 +68,7 @@ exports.findOne = (req, res) => {
 // Update a user identified by the userId in the request
 exports.update = (req, res) => {
 // Validate Request
-    if(!req.body.Surname) {
+    if (!req.body.Surname) {
         return res.status(400).send({
             message: "Dane uzytkownika nie moga byc puste!"
         });
@@ -80,14 +80,14 @@ exports.update = (req, res) => {
         Surname: req.body.Surname
     }, {new: true})
         .then(user => {
-            if(!user) {
+            if (!user) {
                 return res.status(404).send({
                     message: "Nie znaleziono usera z ID: " + req.params.userId
                 });
             }
             res.send(user);
         }).catch(err => {
-        if(err.kind === 'ObjectId') {
+        if (err.kind === 'ObjectId') {
             return res.status(404).send({
                 message: "Nie znaleziono usera z ID: " + req.params.userId
             });
@@ -102,14 +102,14 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     User.findByIdAndRemove(req.params.userId)
         .then(user => {
-            if(!user) {
+            if (!user) {
                 return res.status(404).send({
                     message: "User not found with id " + req.params.userId
                 });
             }
             res.send({message: "User deleted successfully!"});
         }).catch(err => {
-        if(err.kind === 'ObjectId' || err.name === 'NotFound') {
+        if (err.kind === 'ObjectId' || err.name === 'NotFound') {
             return res.status(404).send({
                 message: "User not found with id " + req.params.userId
             });

@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Configuring the database
-const dbConfig = require('C:\\Users\\Administrator\\WebstormProjects\\ProjectIE\\config\\databaseConfig.js');
+const dbConfig = require('./config/databaseConfig.js');
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
