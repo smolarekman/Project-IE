@@ -1,33 +1,29 @@
 const Product = require('../models/products.model.js');
 
-// Create and Save a new User
 exports.create = (req, res) => {
-    // Validate request
-    if(!req.body.Brand || !req.body.Model ||!req.body.Price) {
+
+    if (!req.body.Brand || !req.body.Model || !req.body.Price) {
         return res.status(400).send({
             message: "Pola nie moga byc pute, uzupelnij Marke, Model oraz Cene"
         });
     }
 
-    // Create a User
     const product = new Product({
-        Brand: req.body.Brand ,
-        Model: req.body.Model ,
+        Brand: req.body.Brand,
+        Model: req.body.Model,
         Price: req.body.Price
     });
 
-    // Save User in the database
     product.save()
         .then(data => {
             res.send(data);
         }).catch(err => {
         res.status(500).send({
-            message: err.message || "Wystapil jakis blad podczas tworzenia!"
+            message: err.message || "Wystapil jakis blad podczas tworzenia produktow!"
         });
     });
 };
 
-// Retrieve and return all users from the database.
 exports.findAll = (req, res) => {
     Product.find()
         .then(products => {
@@ -40,30 +36,30 @@ exports.findAll = (req, res) => {
 
 };
 
-// Find a single product with a Brand name (to edit)
-exports.findOne = (req, res) => {
-    var brand=req.params.Brand;
+exports.findOneById = (req, res) => {
+    Product.findById(req.params.productId)
+        .then(product => {
+            if (!product) {
+                return res.status(404).send({
+                    message: "Nie znaleziono produktu z podanym ID : " + req.params.productId
+                });
+            }
+            res.send(product);
+        }).catch(err => {
+        if (err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "Nie znaleziono produktu z podanym ID : " + req.params.productId
+            });
+        }
+        return res.status(500).send({
+            message: "Nie znaleziono! ID: " + req.params.productId
+        });
+    });
+};
 
-    // Product.findOne({Brand: brand})
-    //     .then(product => {
-    //         if(!product) {
-    //             return res.status(404).send({
-    //                 message: "User z nie znaleziony! ID: " + req.params.Brand
-    //             });
-    //         }
-    //         res.send(product);
-    //     }).catch(err => {
-    //     if(err.kind === 'ObjectId') {
-    //         return res.status(404).send({
-    //             message: "User z nie znaleziony! ID: " + req.params.Brand
-    //         });
-    //     }
-    //     return res.status(500).send({
-    //         message: "Nie znaleziono! ID: " + req.params.Brand
-    //     });
-    // });
+exports.findAllByBrand = (req, res) => {
 
-    Product.find({Brand: brand})
+    Product.find({Brand: req.params.Brand})
         .then(products => {
             res.send(products);
         }).catch(err => {
@@ -74,57 +70,55 @@ exports.findOne = (req, res) => {
 
 };
 
-// Update a user identified by the userId in the request
 exports.update = (req, res) => {
-// Validate Request
-    if(!req.body.Surname) {
+
+    if (!req.body.Brand || !req.body.Model || !req.body.Price) {
         return res.status(400).send({
             message: "Dane uzytkownika nie moga byc puste!"
         });
     }
 
-    // Find note and update it with the request body
-    User.findByIdAndUpdate(req.params.userId, {
-        Name: req.body.Name || "Jan",
-        Surname: req.body.Surname
+    Product.findByIdAndUpdate(req.params.productId, {
+        Brand: req.body.Brand,
+        Model: req.body.Model,
+        Price: req.body.Price
     }, {new: true})
-        .then(user => {
-            if(!user) {
+        .then(product => {
+            if (!product) {
                 return res.status(404).send({
-                    message: "Nie znaleziono usera z ID: " + req.params.userId
+                    message: "Nie znaleziono produktu z podanym ID : " + req.params.productId
                 });
             }
-            res.send(user);
+            res.send(product);
         }).catch(err => {
-        if(err.kind === 'ObjectId') {
+        if (err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "Nie znaleziono usera z ID: " + req.params.userId
+                message: "Nie znaleziono produktu z podanym ID : " + req.params.productId
             });
         }
         return res.status(500).send({
-            message: "Blad podczas aktualizacji! ID: " + req.params.userId
+            message: "Blad podczas aktualizacji! ID: " + req.params.productId
         });
     });
 };
 
-// Delete a user with the specified noteId in the request
 exports.delete = (req, res) => {
-    User.findByIdAndRemove(req.params.userId)
-        .then(user => {
-            if(!user) {
+    Product.findByIdAndRemove(req.params.productId)
+        .then(product => {
+            if (!product) {
                 return res.status(404).send({
-                    message: "User not found with id " + req.params.userId
+                    message: "Nie znaleziono produktu z podanym ID : " + req.params.productId
                 });
             }
-            res.send({message: "User deleted successfully!"});
+            res.send({message: "Produkt usunieto poprawnie"});
         }).catch(err => {
-        if(err.kind === 'ObjectId' || err.name === 'NotFound') {
+        if (err.kind === 'ObjectId' || err.name === 'NotFound') {
             return res.status(404).send({
-                message: "User not found with id " + req.params.userId
+                message: "Nie istnieje produkt o podanym ID : " + req.params.productId
             });
         }
         return res.status(500).send({
-            message: "Could not delete user with id " + req.params.userId
+            message: "NIe mozna usunac produktu podanym ID : " + req.params.productId
         });
     });
 

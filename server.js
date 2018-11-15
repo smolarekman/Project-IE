@@ -26,8 +26,8 @@ mongoose.connect(dbConfig.url, {
 });
 
 
-// Require Notes routes
-require('./app/routes/rent.routes.js')(app);
+// Require All routes
+require('./app/routes/user.routes.js')(app);
 require('./app/routes/products.routes.js')(app);
 
 // listen for requests
