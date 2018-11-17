@@ -29,6 +29,7 @@ mongoose.connect(dbConfig.url, {
 // Require All routes
 require('./app/routes/user.routes.js')(app);
 require('./app/routes/products.routes.js')(app);
+require('./app/routes/order.routes')(app);
 
 // listen for requests
 app.listen(3000, () => {
