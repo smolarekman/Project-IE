@@ -1,20 +1,13 @@
 const User = require('../models/user.model.js');
-/*
-robienie rezerwacji:
-cala baza, sprawdzanie magazu, dany uzytkownik robi rezerwacje
- */
 
 exports.create = (req, res) => {
 
-    if (!req.body.Surname || !req.body.Name) { //imie tez nie moze byc puste
-        return res.status(400).send({
-            message: "Uzupelnij imie oraz nazwisko!"
-        });
-    }
-
     const user = new User({
-        Name: req.body.Name,
-        Surname: req.body.Surname,
+        name: req.body.name,
+        surname: req.body.surname,
+        username: req.body.username,
+        password: req.body.password,
+        passwordConf: req.body.passwordConf
     });
 
     user.save()
@@ -64,7 +57,7 @@ exports.findOne = (req, res) => {
 
 exports.update = (req, res) => {
 
-    if (!req.body.Surname || !req.body.Name) {
+    if (!req.body.surname || !req.body.name) {
         return res.status(400).send({
             message: "Dane uzytkownika nie moga byc puste!"
         });
@@ -72,8 +65,8 @@ exports.update = (req, res) => {
 
 
     User.findByIdAndUpdate(req.params.userId, {
-        Name: req.body.Name,
-        Surname: req.body.Surname
+        name: req.body.name,
+        surname: req.body.surname
     }, {new: true})
         .then(user => {
             if (!user) {
