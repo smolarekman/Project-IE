@@ -1,7 +1,6 @@
 const Product = require('../models/products.model.js');
 
 exports.create = (req, res) => {
-
     if (!req.body.Brand || !req.body.Model || !req.body.Price) {
         return res.status(400).send({
             message: "Pola nie moga byc pute, uzupelnij Marke, Model oraz Cene"
@@ -33,7 +32,6 @@ exports.findAll = (req, res) => {
             message: err.message || "Wystapil jakis blad podczas pobierania produktow!"
         });
     });
-
 };
 
 exports.findOneById = (req, res) => {
@@ -67,11 +65,9 @@ exports.findAllByBrand = (req, res) => {
             message: err.message || "Wystapil jakis blad podczas pobierania produktow!"
         });
     });
-
 };
 
 exports.update = (req, res) => {
-
     if (!req.body.Brand || !req.body.Model || !req.body.Price) {
         return res.status(400).send({
             message: "Dane uzytkownika nie moga byc puste!"
@@ -121,5 +117,4 @@ exports.delete = (req, res) => {
             message: "NIe mozna usunac produktu podanym ID : " + req.params.productId
         });
     });
-
 };

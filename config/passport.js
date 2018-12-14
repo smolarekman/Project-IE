@@ -1,13 +1,11 @@
 const LocalStrategy = require('passport-local').Strategy;
-
 const User = require('../app/models/user');
 
 module.exports = function (passport) {
-    // used to serialize the user for the session
     passport.serializeUser(function (user, done) {
         done(null, user.id);
     });
-    // used to deserialize the user
+
     passport.deserializeUser(function (id, done) {
         User.findById(id, function (err, user) {
             done(err, user);
@@ -15,16 +13,14 @@ module.exports = function (passport) {
     });
 
     // LOCAL SIGNUP ____________________________________________________________________________________________________
-    //zamiast username uzywamy do logowania/rejestreacji email
+    //zamiast username uzywamy do logowania/rejestracji email
     passport.use('local-signup', new LocalStrategy({
             usernameField: 'email',
             passwordField: 'password',
             passReqToCallback: true // allows us to pass back the entire request to the callback
         },
         function (req, email, password, done) {
-
             process.nextTick(function () {
-
                 User.findOne({'local.email': email}, function (err, user) {
                     if (err)
                         return done(err);
@@ -43,9 +39,7 @@ module.exports = function (passport) {
                         });
                     }
                 });
-
             });
-
         }));
 
     //LOCAL LOGIN_______________________________________________________________________________________________________
@@ -55,7 +49,6 @@ module.exports = function (passport) {
             passReqToCallback: true
         },
         function (req, email, password, done) {
-
             User.findOne({'local.email': email}, function (err, user) {
                 if (err)
                     return done(err);

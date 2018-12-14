@@ -29,7 +29,6 @@ exports.findAll = (req, res) => {
             message: err.message || "Wystapil jakis blad podczas pobierania uzytkownikow!"
         });
     });
-
 };
 
 exports.findOne = (req, res) => {
@@ -62,7 +61,6 @@ exports.update = (req, res) => {
             message: "Dane uzytkownika nie moga byc puste!"
         });
     }
-
 
     User.findByIdAndUpdate(req.params.userId, {
         name: req.body.name,
@@ -106,5 +104,4 @@ exports.delete = (req, res) => {
             message: "Nie mozna uzunac uzytkownika z ID : " + req.params.userId
         });
     });
-
 };
