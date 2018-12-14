@@ -16,7 +16,6 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(bodyParser());
-//app.set('view engine', 'ejs');
 
 // required for passport------------------------------------------------------------------------------------------------
 app.use(session({secret: 'razdwatrzy'}));
@@ -25,7 +24,6 @@ app.use(passport.session());
 app.use(flash());
 
 mongoose.Promise = global.Promise;
-
 // Connecting to the database
 mongoose.connect(dbConfig.url, {
     useNewUrlParser: true
@@ -35,7 +33,6 @@ mongoose.connect(dbConfig.url, {
     console.log('Could not connect to the database. Exiting now...', err);
     process.exit();
 });
-
 // Require All routes---------------------------------------------------------------------------------------------------
 require('./app/routes/user.routes.js')(app);
 require('./app/routes/products.routes.js')(app);
