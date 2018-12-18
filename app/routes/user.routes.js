@@ -5,6 +5,8 @@ module.exports = (app) => {
 
     app.get('/users', users.findAll);
 
+    app.get('/users/findSur/:surname', users.findAllBySur);
+
     app.get('/users/:userId', users.findOne);
 
     app.put('/users/:userId', users.update);

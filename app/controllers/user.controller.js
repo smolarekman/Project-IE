@@ -54,6 +54,18 @@ exports.findOne = (req, res) => {
 };
 
 
+exports.findAllBySur = (req, res) => {
+
+    User.find({surname: req.params.surname})
+        .then(users => {
+            res.send(users);
+        }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Wystapil jakis blad podczas pobierania !"
+        });
+    });
+};
+
 exports.update = (req, res) => {
 
     if (!req.body.surname || !req.body.name) {
@@ -104,4 +116,32 @@ exports.delete = (req, res) => {
             message: "Nie mozna uzunac uzytkownika z ID : " + req.params.userId
         });
     });
+};
+
+exports.delete1 = (req, res) => {
+    // User.findOneAndRemove({surname: req.params.surname}, function (err, user) {
+    //     user.remove();
+    // }).then(res.send({message: "Ok"})).catch(err => {
+    //     return res.send({message: "ERROR"})
+    // })
+
+    User.findOneAndDelete({surname:req.params.userId})
+        .then(user => {
+            if (!user) {
+                return res.status(404).send({
+                    message: "Nie znaleziono uzytkownika1 z ID : "
+                });
+            }
+            res.send({message: "Uzytkownik usuniety poprawnie"});
+        }).catch(err => {
+        if (err.kind === 'ObjectId' || err.name === 'NotFound') {
+            return res.status(404).send({
+                message: "Nie znaleziono uzytkownika2 z ID :  "
+            });
+        }
+        return res.status(500).send({
+            message: "Nie mozna uzunac uzytkownika3 z ID : "
+        });
+    });
+
 };

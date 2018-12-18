@@ -53,6 +53,7 @@ exports.findOneById = (req, res) => {
             message: "Nie znaleziono! ID: " + req.params.productId
         });
     });
+
 };
 
 exports.findAllByBrand = (req, res) => {
@@ -96,6 +97,7 @@ exports.update = (req, res) => {
             message: "Blad podczas aktualizacji! ID: " + req.params.productId
         });
     });
+
 };
 
 exports.delete = (req, res) => {
