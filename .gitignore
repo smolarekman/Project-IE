@@ -1,6 +1,10 @@
 .idea
 node_modules
 Keys.js
+public
+package-lock.json
+
+client/package-lock.json
 client/node_modules
 client/bin
 
