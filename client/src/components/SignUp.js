@@ -1,7 +1,8 @@
 import React from 'react';
-import {loginTo} from "../actions";
+import {signUp} from "../actions";
 
-class LoginForm extends React.Component {
+class SignUp extends React.Component {
+
     constructor() {
         super();
 
@@ -30,10 +31,10 @@ class LoginForm extends React.Component {
             password: this.state.password
         };
 
-        loginTo(user).then(res => {
+        signUp(user).then(res => {
             if (res) {
-                this.props.history.push(`/api/profile`);
                 console.log(res);
+                this.props.history.push(`/`);
             }
         })
     }
@@ -45,11 +46,13 @@ class LoginForm extends React.Component {
                     <div className={"col"}>
                         <div className={"input-field col s6"}>
                             <i className={"material-icons prefix"}>account_circle</i>
-                            <input type="text" id="email" className="FormField__Input" placeholder="Podaj email" name="email" value={this.state.email} onChange={this.handleChange} />
+                            <input type="text" id="email" className="FormField__Input" placeholder="Podaj email2"
+                                   name="email" value={this.state.email} onChange={this.handleChange}/>
                         </div>
                         <div className={"input-field col s6"}>
                             <i className={"material-icons prefix"}>keyboard_hide</i>
-                            <input type="password" id="password" className="FormField__Input" placeholder="Podaj hasło" name="password" value={this.state.password} onChange={this.handleChange}/>
+                            <input type="password" id="password" className="FormField__Input" placeholder="Podaj hasło2"
+                                   name="password" value={this.state.password} onChange={this.handleChange}/>
                         </div>
                         <div className={"FormField"}>
 
@@ -60,10 +63,8 @@ class LoginForm extends React.Component {
                     </div>
                 </form>
             </div>
-
         );
     }
-
 }
 
-export default LoginForm;
+export default SignUp;
