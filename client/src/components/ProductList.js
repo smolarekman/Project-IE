@@ -27,12 +27,15 @@ class ProductList extends React.Component {
                 <Fragment>
 
                     <div className={"container"}>
-                        <h2>List of products:</h2>
+                        <center>
+                            <h2>List of products:</h2>
+                        </center>
                         <table className={"striped"}>
                             <thead>
                             <tr>
                                 <th>Brand</th>
                                 <th>Model</th>
+                                <th>Price</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -40,6 +43,7 @@ class ProductList extends React.Component {
                                 <tr>
                                     <th>{brand.Brand}</th>
                                     <th>{brand.Model}</th>
+                                    <th>{brand.Price}</th>
                                 </tr>
                             ))}
                             </tbody>

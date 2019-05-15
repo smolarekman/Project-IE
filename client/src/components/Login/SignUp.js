@@ -1,5 +1,5 @@
 import React from 'react';
-import {signUp} from "../actions";
+import {signUp} from "../../actions";
 
 class SignUp extends React.Component {
 

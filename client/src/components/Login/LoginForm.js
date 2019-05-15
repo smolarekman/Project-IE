@@ -1,5 +1,5 @@
 import React from 'react';
-import {loginTo} from "../actions";
+import {loginTo} from "../../actions";
 
 class LoginForm extends React.Component {
     constructor() {
@@ -32,7 +32,7 @@ class LoginForm extends React.Component {
 
         loginTo(user).then(res => {
             if (res) {
-                this.props.history.push(`/api/profile`);
+                this.props.history.push(`/`);
                 console.log(res);
             }
         })

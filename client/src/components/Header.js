@@ -6,8 +6,6 @@ class Header extends Component {
 
     renderContent() {
 
-        console.log(this.props.auth);
-
         switch (this.props.auth) {
             case null:
                 return (<div>
@@ -28,7 +26,7 @@ class Header extends Component {
         return (
             <nav>
                 <div className={"red nav-wrapper"}>
-                    <Link to={this.props.auth?'/':'/login'} className={"left brand-logo"} >
+                    <Link to={this.props.auth ? '/' : '/login'} className={"left brand-logo"}>
                         Marify
                     </Link>
                     <ul className={"right"}>

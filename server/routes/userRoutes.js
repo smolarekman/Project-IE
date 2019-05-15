@@ -1,9 +1,9 @@
 module.exports = (app) => {
     const users = require('../controllers/user.controller.js');
 
-    app.post('/users', users.create);
+    app.post('/dasd/users', users.create);
 
-    app.get('/api/users', users.findAll);
+    app.get('/users', users.findAll);
 
     app.get('/users/findSur/:surname', users.findAllBySur);
 
