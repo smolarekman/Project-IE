@@ -6,8 +6,10 @@ import * as actions from '../actions'
 import LoginForm from './Login/LoginForm'
 import SigUp from './Login/SignUp'
 import Header from './Header'
-import ProdList from './ProductList'
+import ProdList from './Products/ProductList'
 import AddNewProd from './Products/AddNewProd'
+import ProdApp from './Products/App'
+import DelProd from './Products/DeleteProd'
 
 
 class App extends Component {
@@ -24,11 +26,16 @@ class App extends Component {
                         <Header/>
                     </div>
                     <div className={"container"}>
+                        <Route exact path={"/homepage"} component={ProdApp}/>
+
                         <Route exact path={"/login"} component={LoginForm}/>
                         <Route exact path={"/signup"} component={SigUp}/>
-                        <Route exact path={"/showAllList"} component={ProdList}/>
+
+                        <Route exact path={"/showAllProd"} component={ProdList}/>
                         <Route exact path={"/addNewProd"} component={AddNewProd}/>
-                        <Route exact path={"/showProd"} component={ProdList}/>
+                        <Route exact path={"/delProd"} component={DelProd}/>
+
+
                     </div>
                 </BrowserRouter>
             </div>

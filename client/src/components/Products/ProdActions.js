@@ -10,3 +10,16 @@ export const addNewProduct = prod => {
             return res.data;
         })
 };
+
+export const deleteProd = prod => {
+    return axios
+        .delete(`/api/products`,
+            {
+                data: {
+                    productId: prod.productId
+                }
+
+            }).then(res => {
+            console.log(res.data);
+        })
+};

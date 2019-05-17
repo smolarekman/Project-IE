@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import axios from 'axios';
+import axios from 'axios/index';
 
 class ProductList extends React.Component {
     constructor() {
@@ -9,7 +9,6 @@ class ProductList extends React.Component {
             todoItem: {}
         }
     };
-
 
     componentDidMount() {
         axios.get('/api/products')
@@ -25,7 +24,6 @@ class ProductList extends React.Component {
         {
             return (
                 <Fragment>
-
                     <div className={"container"}>
                         <center>
                             <h2>List of products:</h2>
@@ -48,7 +46,6 @@ class ProductList extends React.Component {
                             ))}
                             </tbody>
                         </table>
-
                     </div>
                 </Fragment>
             );
