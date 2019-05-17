@@ -35,14 +35,14 @@ class DeleteProd extends Component {
 
     render() {
         return (
-            <div>
+            <div className={"container"}>
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Product ID:
                         <input type="text" name={'productId'} value={this.state.productId}
                                onChange={this.handleChange}/>
                     </label>
-                    <button >Delete</button>
+                    <button>Delete</button>
                 </form>
             </div>
 

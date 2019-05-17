@@ -30,6 +30,7 @@ class AddNewProd extends Component {
         addNewProduct(prod).then(
             res => {
                 if (res) {
+                    console.log(res);
                     this.props.history.push(`/homepage`)
                 }
             }

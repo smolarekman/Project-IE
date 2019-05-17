@@ -38,7 +38,7 @@ class ProductList extends React.Component {
                             </thead>
                             <tbody>
                             {brand.map(brand => (
-                                <tr>
+                                <tr key={brand.Model}>
                                     <th>{brand.Brand}</th>
                                     <th>{brand.Model}</th>
                                     <th>{brand.Price}</th>
