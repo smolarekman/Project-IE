@@ -13,7 +13,6 @@ module.exports = function (passport) {
     });
 
     // LOCAL SIGNUP ____________________________________________________________________________________________________
-    //zamiast username uzywamy do logowania/rejestracji email
     passport.use('local-signup', new LocalStrategy({
             usernameField: 'email',
             passwordField: 'password',

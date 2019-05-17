@@ -1,15 +1,15 @@
 module.exports = (app) => {
     const products = require('../controllers/products.controller.js');
 
-    app.post('/products', products.create);
+    app.post('/api/products', products.create);
 
-    app.get('/products', products.findAll);
+    app.get('/api/products', products.findAll);
 
-    app.get('/products/findById/:productId', products.findOneById);
+    app.get('/api/products/findById/:productId', products.findOneById);
 
-    app.get('/products/findByBrand/:Brand', products.findAllByBrand);
+    app.get('/api/products/findByBrand/:Brand', products.findAllByBrand);
 
-    app.put('/products/:productId', products.update);
+    app.put('/api/products/:productId', products.update);
 
-    app.delete('/products/:productId', products.delete);
+    app.delete('/api/products', products.delete);
 };

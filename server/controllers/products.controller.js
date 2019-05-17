@@ -101,22 +101,22 @@ exports.update = (req, res) => {
 };
 
 exports.delete = (req, res) => {
-    Product.findByIdAndRemove(req.params.productId)
+    Product.findByIdAndRemove(req.body.productId)
         .then(product => {
             if (!product) {
                 return res.status(404).send({
-                    message: "Nie znaleziono produktu z podanym ID : " + req.params.productId
+                    message: "Nie znaleziono produktu z podanym ID : " + req.body.productId
                 });
             }
             res.send({message: "Produkt usunieto poprawnie"});
         }).catch(err => {
         if (err.kind === 'ObjectId' || err.name === 'NotFound') {
             return res.status(404).send({
-                message: "Nie istnieje produkt o podanym ID : " + req.params.productId
+                message: "Nie istnieje produkt o podanym ID : " + req.body.productId
             });
         }
         return res.status(500).send({
-            message: "NIe mozna usunac produktu podanym ID : " + req.params.productId
+            message: "NIe mozna usunac produktu podanym ID : " + req.body.productId
         });
     });
 };

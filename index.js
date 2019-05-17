@@ -34,7 +34,7 @@ mongoose.connect(dbConfig.url, {
     process.exit();
 });
 // Require All routes---------------------------------------------------------------------------------------------------
-require('./server/routes/user.routes.js')(app);
+require('./server/routes/userRoutes.js')(app);
 require('./server/routes/products.routes.js')(app);
 require('./server/routes/order.routes')(app);
 require('./server/routes.js')(app, passport); // load our routes and pass in our server and fully configured passport

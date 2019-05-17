@@ -2,28 +2,24 @@ const jwt = require('jsonwebtoken');
 
 module.exports = (app, passport) => {
 
-    app.get('/api/home', (req, res) => {
-        res.send({
-            message: "Strona startowa"
-        })
-    });
-
-    app.get('/api/login', (req, res) => {
-        res.send(req.flash('loginMessage'));
-    });
-
     app.post('/api/signup', passport.authenticate('local-signup', {
-        successRedirect: '/api/profile',
-        failureRedirect: '/api/signup',
-        failureFlash: true // allow flash messages
+        successRedirect: '/',
+        failureRedirect: '/signup',
+        failureFlash: false // allow flash messages
     }));
 
     app.post('/api/login', passport.authenticate('local-login', {
         successRedirect: '/',
-        failureRedirect: '/api/login',
+        failureRedirect: '/login',
         failureFlash: true // allow flash messages
     }));
 
+    app.get('/api/login', (req, res) => {
+        res.send(req.flash('loginMessage'));
+    });
+    // app.get('/api/signup', (req, res) => {
+    //     res.send(req.flash('signupMessage'));
+    // });
     //--------------------token
     app.post('/api/token/user', verifyToken, (req, res) => {
         jwt.verify(req.token, 'secretkey', (err, authData) => {
@@ -36,10 +32,6 @@ module.exports = (app, passport) => {
             }
         });
 
-    });
-
-    app.get('/api/signup', (req, res) => {
-        res.send(req.flash('signupMessage'));
     });
 
     app.get('/api/profile', isLoggedIn, (req, res) => {
@@ -62,7 +54,6 @@ function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
         return next();
 
-    //res.redirect('/api/home');
 }
 
 function verifyToken(req, res, next) {

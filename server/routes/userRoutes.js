@@ -1,15 +1,15 @@
 module.exports = (app) => {
     const users = require('../controllers/user.controller.js');
 
-    app.post('/dasd/users', users.create);
+    app.post('/api/users', users.create);
 
-    app.get('/users', users.findAll);
+    app.get('/api/users', users.findAll);
 
-    app.get('/users/findSur/:surname', users.findAllBySur);
+    app.get('/api/users/findSur/:surname', users.findAllBySur);
 
-    app.get('/users/:userId', users.findOne);
+    app.get('/api/users/:userId', users.findOne);
 
-    app.put('/users/:userId', users.update);
+    app.put('/api/users/:userId', users.update);
 
-    app.delete('/users/:userId', users.delete);
+    app.delete('/api/users/:userId', users.delete);
 };
