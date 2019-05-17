@@ -3,7 +3,7 @@ const Product = require('../models/products.model.js');
 exports.create = (req, res) => {
     if (!req.body.Brand || !req.body.Model || !req.body.Price) {
         return res.status(400).send({
-            message: "Pola nie moga byc pute, uzupelnij Marke, Model oraz Cene"
+            message: "Fill brand, model and price field!"
         });
     }
 
@@ -18,7 +18,7 @@ exports.create = (req, res) => {
             res.send(data);
         }).catch(err => {
         res.status(500).send({
-            message: err.message || "Wystapil jakis blad podczas tworzenia produktow!"
+            message: err.message || "Something went wrong during create product!"
         });
     });
 };
@@ -29,28 +29,28 @@ exports.findAll = (req, res) => {
             res.send(products);
         }).catch(err => {
         res.status(500).send({
-            message: err.message || "Wystapil jakis blad podczas pobierania produktow!"
+            message: err.message || "Something went wrong during download product!"
         });
     });
 };
 
 exports.findOneById = (req, res) => {
-    Product.findById(req.params.productId)
+    Product.findById(req.body.productId)
         .then(product => {
             if (!product) {
                 return res.status(404).send({
-                    message: "Nie znaleziono produktu z podanym ID : " + req.params.productId
+                    message: "We can't find product with id: " + req.body.productId
                 });
             }
             res.send(product);
         }).catch(err => {
         if (err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "Nie znaleziono produktu z podanym ID : " + req.params.productId
+                message: "We can't find product with id: " + req.body.productId
             });
         }
         return res.status(500).send({
-            message: "Nie znaleziono! ID: " + req.params.productId
+            message: "We can't find id: " + req.body.productId
         });
     });
 
@@ -58,12 +58,12 @@ exports.findOneById = (req, res) => {
 
 exports.findAllByBrand = (req, res) => {
 
-    Product.find({Brand: req.params.Brand})
+    Product.find({Brand: req.body.Brand})
         .then(products => {
             res.send(products);
         }).catch(err => {
         res.status(500).send({
-            message: err.message || "Wystapil jakis blad podczas pobierania produktow!"
+            message: err.message || "Something went wrong during download product!"
         });
     });
 };
@@ -71,11 +71,11 @@ exports.findAllByBrand = (req, res) => {
 exports.update = (req, res) => {
     if (!req.body.Brand || !req.body.Model || !req.body.Price) {
         return res.status(400).send({
-            message: "Dane uzytkownika nie moga byc puste!"
+            message: "Fill brand, model and price field!"
         });
     }
 
-    Product.findByIdAndUpdate(req.params.productId, {
+    Product.findByIdAndUpdate(req.body.productId, {
         Brand: req.body.Brand,
         Model: req.body.Model,
         Price: req.body.Price
@@ -83,18 +83,18 @@ exports.update = (req, res) => {
         .then(product => {
             if (!product) {
                 return res.status(404).send({
-                    message: "Nie znaleziono produktu z podanym ID : " + req.params.productId
+                    message: "We can't find product with id: " + req.body.productId
                 });
             }
             res.send(product);
         }).catch(err => {
         if (err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "Nie znaleziono produktu z podanym ID : " + req.params.productId
+                message: "We can't find product with id: " + req.body.productId
             });
         }
         return res.status(500).send({
-            message: "Blad podczas aktualizacji! ID: " + req.params.productId
+            message: "Something went wrong during update product with id: " + req.body.productId
         });
     });
 
@@ -105,18 +105,18 @@ exports.delete = (req, res) => {
         .then(product => {
             if (!product) {
                 return res.status(404).send({
-                    message: "Nie znaleziono produktu z podanym ID : " + req.body.productId
+                    message: "We can't find product with id: " + req.body.productId
                 });
             }
-            res.send({message: "Produkt usunieto poprawnie"});
+            res.send({message: "Product deleted successfully!"});
         }).catch(err => {
         if (err.kind === 'ObjectId' || err.name === 'NotFound') {
             return res.status(404).send({
-                message: "Nie istnieje produkt o podanym ID : " + req.body.productId
+                message: "There is no product with id: " + req.body.productId
             });
         }
         return res.status(500).send({
-            message: "NIe mozna usunac produktu podanym ID : " + req.body.productId
+            message: "We can't delete product with id: " + req.body.productId
         });
     });
 };
