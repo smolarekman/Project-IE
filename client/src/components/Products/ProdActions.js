@@ -18,8 +18,35 @@ export const deleteProd = prod => {
                 data: {
                     productId: prod.productId
                 }
-
             }).then(res => {
             return res.data;
+        })
+};
+
+export const findByBrand = prod => {
+    return axios
+        .get('/api/findByBrand',
+            {
+                params: {
+                    Brand: prod.Brand
+                }
+            }).then(res => {
+            return res;
+        });
+};
+
+export const editProduct = prod => {
+    return axios
+        .put('/api/editProducts/', {
+            Brand: prod.Brand,
+            Model: prod.Model,
+            Price: prod.Price,
+        }, {
+            params: {
+                productId: prod.productId
+            }
+        }).then(res => {
+            console.log(res);
+            return res;
         })
 };

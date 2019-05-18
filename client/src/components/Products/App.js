@@ -9,17 +9,19 @@ class App extends Component {
         switch (this.props.auth) {
             case null:
                 return (<div>
-                    <h2>Log in   </h2>
+                    <h2>Log in </h2>
                 </div>);
             case false:
                 return (<div>
-                    <h2>Log in  </h2>
+                    <h2>Log in </h2>
                 </div>);
             default:
                 return <div>
                     <li><a href={"/addNewProd"}>Add New Product</a></li>
                     <li><a href={"/showAllProd"}>Show all products</a></li>
                     <li><a href={"/delProd"}>delProd</a></li>
+                    <li><a href={"/showByBrand"}>Brand</a></li>
+                    <li><a href={"/editProduct"}>Edit</a></li>
                 </div>
         }
     }

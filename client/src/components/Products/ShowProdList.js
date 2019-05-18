@@ -1,12 +1,11 @@
 import React, {Fragment} from 'react';
 import axios from 'axios/index';
 
-class ProductList extends React.Component {
+class ShowProdList extends React.Component {
     constructor() {
         super();
         this.state = {
-            brand: [],
-            todoItem: {}
+            products: []
         }
     };
 
@@ -14,13 +13,14 @@ class ProductList extends React.Component {
         axios.get('/api/products')
             .then(res => {
                 this.setState({
-                    brand: res.data
+                    products: res.data
                 });
+                console.log(res.data);
             })
     }
 
     render() {
-        const {brand} = this.state;
+        const {products} = this.state;
         {
             return (
                 <Fragment>
@@ -37,11 +37,11 @@ class ProductList extends React.Component {
                             </tr>
                             </thead>
                             <tbody>
-                            {brand.map(brand => (
-                                <tr key={brand.Model}>
-                                    <th>{brand.Brand}</th>
-                                    <th>{brand.Model}</th>
-                                    <th>{brand.Price}</th>
+                            {products.map(product => (
+                                <tr key={product.Model}>
+                                    <th>{product.Brand}</th>
+                                    <th>{product.Model}</th>
+                                    <th>{product.Price}</th>
                                 </tr>
                             ))}
                             </tbody>
@@ -53,4 +53,4 @@ class ProductList extends React.Component {
     }
 }
 
-export default ProductList;
+export default ShowProdList;
