@@ -7,9 +7,9 @@ module.exports = (app) => {
 
     app.get('/api/products/findById', products.findOneById);
 
-    app.get('/api/products/findByBrand', products.findAllByBrand);
+    app.get('/api/findByBrand/', products.findAllByBrand);
 
-    app.put('/api/products', products.update);
+    app.put('/api/editProducts/', products.update);
 
     app.delete('/api/products', products.delete);
 };
