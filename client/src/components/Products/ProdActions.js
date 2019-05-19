@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const addNewProduct = prod => {
     return axios
-        .post('/api/products', {
+        .post('/api/orders', {
             Brand: prod.Brand,
             Model: prod.Model,
             Price: prod.Price
@@ -46,7 +46,6 @@ export const editProduct = prod => {
                 productId: prod.productId
             }
         }).then(res => {
-            console.log(res);
             return res;
         })
 };

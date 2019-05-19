@@ -1,47 +1,47 @@
 import React, {Fragment} from 'react';
 import axios from 'axios/index';
 
-class ShowProdList extends React.Component {
+class ShowAllOrders extends React.Component {
     constructor() {
         super();
         this.state = {
-            products: []
+            orders: []
         }
     };
 
     componentDidMount() {
-        axios.get('/api/orders')
+        axios.get('/api/showAllOrders')
             .then(res => {
                 this.setState({
-                    products: res.data
+                    orders: res.data
                 });
                 console.log(res.data);
             })
     }
 
     render() {
-        const {products} = this.state;
+        const {orders} = this.state;
         {
             return (
                 <Fragment>
                     <div className={"container"}>
                         <center>
-                            <h2>List of products:</h2>
+                            <h2>List of orders:</h2>
                         </center>
                         <table className={"striped"}>
                             <thead>
                             <tr>
-                                <th>Brand</th>
-                                <th>Model</th>
-                                <th>Price</th>
+                                <th>User_ID</th>
+                                <th>Product_ID</th>
+
                             </tr>
                             </thead>
                             <tbody>
-                            {products.map(product => (
-                                <tr key={product.Model}>
-                                    <th>{product.Brand}</th>
-                                    <th>{product.Model}</th>
-                                    <th>{product.Price}</th>
+                            {orders.map(order => (
+                                <tr key={order.User_ID}>
+                                    <th>{order.User_ID}</th>
+                                    <th>{order.Product_ID}</th>
+
                                 </tr>
                             ))}
                             </tbody>
@@ -53,4 +53,4 @@ class ShowProdList extends React.Component {
     }
 }
 
-export default ShowProdList;
+export default ShowAllOrders;

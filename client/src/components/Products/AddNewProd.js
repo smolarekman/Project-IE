@@ -30,7 +30,7 @@ class AddNewProd extends Component {
         addNewProduct(prod).then(
             res => {
                 if (res) {
-                    console.log(res);
+
                     this.props.history.push(`/homepage`)
                 }
             }
@@ -57,7 +57,9 @@ class AddNewProd extends Component {
                                onChange={this.handleChange}/>
                     </div>
                     <button className={"ui button"}>Submit</button>
+                    <button className={"ui button"} onSubmit={this.handleSubmit}>Save and add new product!</button>
                 </form>
+
             </div>
         );
     }
