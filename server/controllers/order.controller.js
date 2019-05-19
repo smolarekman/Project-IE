@@ -4,9 +4,15 @@ const User = require('../models/user.model');
 
 exports.create = (req, res) => {
 
+
+    if (!req.body.User_ID || !req.body.Product_ID ) {
+        return res.status(400).send({
+            message: "Fill orders, model and price field!"
+        });
+    }
     const order=new Order({
-        User_ID: req.params.userId,
-        Product_ID: req.params.productId
+        User_ID: req.body.User_ID,
+        Product_ID: req.body.Product_ID
     });
 
     order.save()

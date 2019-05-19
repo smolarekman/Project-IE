@@ -3,7 +3,7 @@ const Product = require('../models/products.model.js');
 exports.create = (req, res) => {
     if (!req.body.Brand || !req.body.Model || !req.body.Price) {
         return res.status(400).send({
-            message: "Fill products, model and price field!"
+            message: "Fill orders, model and price field!"
         });
     }
 
@@ -73,7 +73,7 @@ exports.update = (req, res) => {
     if (Product.findById(req.query.productId)) {
         if (!req.body.Brand || !req.body.Model || !req.body.Price) {
             return res.status(400).send({
-                message: "Fill products, model and price field!"
+                message: "Fill orders, model and price field!"
             });
         }
     }
