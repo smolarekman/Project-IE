@@ -5,12 +5,12 @@ const User = require('../models/user.model');
 exports.create = (req, res) => {
 
 
-    if (!req.body.User_ID || !req.body.Product_ID ) {
+    if (!req.body.User_ID || !req.body.Product_ID) {
         return res.status(400).send({
             message: "Fill orders, model and price field!"
         });
     }
-    const order=new Order({
+    const order = new Order({
         User_ID: req.body.User_ID,
         Product_ID: req.body.Product_ID
     });
@@ -34,4 +34,26 @@ exports.findAll = (req, res) => {
         });
     });
 
+
 };
+
+exports.delete = (req, res) => {
+    Order.findByIdAndRemove(req.body.orderId)
+        .then(order => {
+            if (!order) {
+                return res.status(404).send({
+                    message: "We can't find product with id: " + req.body.orderId
+                });
+            }
+            res.send({message: "Order deleted successfully!"});
+        }).catch(err => {
+        if (err.kind === 'ObjectId' || err.name === 'NotFound') {
+            return res.status(404).send({
+                message: "There is no order with id: " + req.body.orderId
+            });
+        }
+        return res.status(500).send({
+            message: "We can't delete order with id: " + req.body.orderId
+        });
+    });
+}

@@ -6,15 +6,16 @@ import * as actions from '../actions'
 import LoginForm from './Login/LoginForm'
 import SigUp from './Login/SignUp'
 import Header from './Header'
-import ProdList from './Products/ShowProdList'
-import AddNewProd from './Products/AddNewProd'
-import ProdApp from './Products/App'
-import DelProd from './Products/DeleteProd'
-import ShowByBrand from './Products/FindByBrand'
-import EditProduct from './Products/EditProduct'
+import ProdList from './Product/ShowProdList'
+import AddNewProd from './Product/AddNewProd'
+import ProdApp from './Product/App'
+import DelProd from './Product/DeleteProd'
+import ShowByBrand from './Product/FindByBrand'
+import EditProduct from './Product/EditProduct'
 import CreateOrder from './Order/CreateOrder'
 import OrderApp from './Order/App'
 import ShowAllOrders from './Order/ShowAllOrders'
+import DeleteOrder from './Order/DeleteOrder'
 
 class App extends Component {
 
@@ -44,6 +45,7 @@ class App extends Component {
 
                         <Route exact path={"/addNewOrder"} component={CreateOrder}/>
                         <Route exact path={"/showAllOrders"} component={ShowAllOrders}/>
+                        <Route exact path={"/deleteOrder"} component={DeleteOrder}/>
 
                     </div>
                 </BrowserRouter>

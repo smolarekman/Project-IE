@@ -4,6 +4,9 @@ module.exports = (app) => {
     app.post('/api/orders/addOrder', order.create);
 
     app.get('/api/showAllOrders', order.findAll);
+
+    app.delete('/api/orders', order.delete)
+
     //
     // server.get('/orders/findById/:productId', order.findOneById);
     //

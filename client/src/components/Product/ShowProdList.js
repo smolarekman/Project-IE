@@ -10,7 +10,7 @@ class ShowProdList extends React.Component {
     };
 
     componentDidMount() {
-        axios.get('/api/orders')
+        axios.get('/api/products')
             .then(res => {
                 this.setState({
                     products: res.data

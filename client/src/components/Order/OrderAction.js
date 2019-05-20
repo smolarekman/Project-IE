@@ -9,3 +9,15 @@ export const createOrder = order => {
             return res.data;
         })
 };
+
+export const deleteOrder = order => {
+    return axios
+        .delete(`/api/orders`,
+            {
+                data: {
+                    orderId: order.orderId
+                }
+            }).then(res => {
+            return res.data;
+        })
+};
