@@ -16,7 +16,7 @@ class Header extends Component {
                 return <li><a href={"/login"}>Login</a></li>;
             default:
                 return <div>
-                    <li><a href={"/profile"}>Profile</a></li>
+                    <li><a href={"/token/user"}>Profile</a></li>
                     <li><a href={"/api/logout"}>Logout</a></li>
                 </div>
         }

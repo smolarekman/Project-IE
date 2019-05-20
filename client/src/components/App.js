@@ -17,6 +17,8 @@ import OrderApp from './Order/App'
 import ShowAllOrders from './Order/ShowAllOrders'
 import DeleteOrder from './Order/DeleteOrder'
 
+import Profile from './Login/Profile'
+
 class App extends Component {
 
     componentDidMount() {
@@ -36,6 +38,7 @@ class App extends Component {
 
                         <Route exact path={"/login"} component={LoginForm}/>
                         <Route exact path={"/signup"} component={SigUp}/>
+                        <Route exact path={"/token/user"} component={Profile}/>
 
                         <Route exact path={"/showAllProd"} component={ProdList}/>
                         <Route exact path={"/addNewProd"} component={AddNewProd}/>
