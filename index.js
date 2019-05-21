@@ -28,6 +28,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.url, {
     useNewUrlParser: true
 }).then(() => {
+
     console.log("Successfully connected to the database");
 }).catch(err => {
     console.log('Could not connect to the database. Exiting now...', err);
@@ -37,9 +38,9 @@ mongoose.connect(dbConfig.url, {
 require('./server/routes/userRoutes.js')(app);
 require('./server/routes/productsRoutes.js')(app);
 require('./server/routes/orderRoutes')(app);
-require('./server/authRoutes.js')(app, passport); // load our routes and pass in our server and fully configured passport
+require('./server/routes/authRoutes.js')(app, passport); // load our routes and pass in our server and fully configured passport
 require('./server/config/passport')(passport);
 
 app.listen(port, () => {
-    console.log("Server is listening on port 5000");
+    console.log(`Server is listening on port ${port}`);
 });
