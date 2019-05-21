@@ -6,7 +6,7 @@ export const createOrder = order => {
             User_ID: order.User_ID,
             Product_ID: order.Product_ID
         }).then(res => {
-            return res.data;
+            return res;
         })
 };
 

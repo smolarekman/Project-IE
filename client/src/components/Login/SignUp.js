@@ -8,7 +8,8 @@ class SignUp extends React.Component {
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            error: ''
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -32,36 +33,57 @@ class SignUp extends React.Component {
         };
 
         signUp(user).then(res => {
-            if (res) {
-                console.log(res);
+            console.log(res)
+            if (res.token) {
                 this.props.history.push(`/`);
+            } else {
+                this.setState({
+                    error: res[0]
+                })
             }
         })
+    }
+    createError() {
+        if (this.state.error.toString().length > 1) {
+            return (
+                <div className="ui warning message">
+                    <i className="close icon"></i>
+                    <div className="header">
+                        Something went wrong!
+                    </div>
+                    {this.state.error}
+                </div>
+            )
+        }
     }
 
     render() {
         return (
-            <div className={"col"}>
-                <form onSubmit={this.handleSubmit} className={"col s12"}>
-                    <div className={"col"}>
-                        <div className={"input-field col s6"}>
-                            <i className={"material-icons prefix"}>account_circle</i>
-                            <input type="text" id="email" className="FormField__Input" placeholder="Podaj email2"
-                                   name="email" value={this.state.email} onChange={this.handleChange}/>
+            <div>
+                <div className={"col"}>
+                    <form onSubmit={this.handleSubmit} className={"col s12"}>
+                        <div className={"col"}>
+                            <div className={"input-field col s6"}>
+                                <i className={"material-icons prefix"}>account_circle</i>
+                                <input type="email" id="email" className="FormField__Input" placeholder="Email"
+                                       required="required"
+                                       name="email" value={this.state.email} onChange={this.handleChange}/>
+                            </div>
+                            <div className={"input-field col s6"}>
+                                <i className={"material-icons prefix"}>keyboard_hide</i>
+                                <input type="password" id="password" className="FormField__Input" placeholder="Password"
+                                       required="required"
+                                       name="password" value={this.state.password} onChange={this.handleChange}/>
+                            </div>
+                            <div className={"FormField"}>
+                                <button className={"ui button"}>
+                                    Send
+                                </button>
+                            </div>
                         </div>
-                        <div className={"input-field col s6"}>
-                            <i className={"material-icons prefix"}>keyboard_hide</i>
-                            <input type="password" id="password" className="FormField__Input" placeholder="Podaj hasło2"
-                                   name="password" value={this.state.password} onChange={this.handleChange}/>
-                        </div>
-                        <div className={"FormField"}>
-
-                            <button className={"FormField__Button mr-20"}>
-                                Send
-                            </button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
+                {this.createError()}
             </div>
         );
     }

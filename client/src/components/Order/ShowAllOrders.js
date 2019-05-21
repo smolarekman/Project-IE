@@ -24,11 +24,11 @@ class ShowAllOrders extends React.Component {
         {
             return (
                 <Fragment>
-                    <div className={"container"}>
+                    <div>
                         <center>
                             <h2>List of orders:</h2>
                         </center>
-                        <table className={"striped"}>
+                        <table className={"ui fixed table"}>
                             <thead>
                             <tr>
                                 <th>User_ID</th>

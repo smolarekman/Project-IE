@@ -9,7 +9,7 @@ module.exports = (app, passport) => {
     }));
 
     app.post('/api/login', passport.authenticate('local-login', {
-        successRedirect: '/',
+        successRedirect: '/api/profile',
         failureRedirect: '/login',
         failureFlash: true // allow flash messages
     }));

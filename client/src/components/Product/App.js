@@ -20,7 +20,7 @@ class App extends Component {
                     <center>
                         <h3>Products</h3>
                     </center>
-                    <table className={"striped"}>
+                    <table className={"ui fixed table"}>
                         <thead>
                         <th>Action</th>
                         <th>Description</th>
@@ -28,23 +28,23 @@ class App extends Component {
                         <tbody>
                         <tr>
                             <th><a href={"/addNewProd"}>Add product</a></th>
-                            <th>Add new order by fill userId and productId</th>
+                            <th>Add new product by providing brand, model and price</th>
                         </tr>
                         <tr>
                             <th><a href={"/showAllProd"}>Show all products</a></th>
-                            <th>List of all orders in db</th>
+                            <th>List of all products in db</th>
                         </tr>
                         <tr>
                             <th><a href={"/delProd"}>Delete product</a></th>
-                            <th>Delete order by orderID</th>
+                            <th>Delete product by providing productID</th>
                         </tr>
                         <tr>
                             <th><a href={"/showByBrand"}>Find by brand</a></th>
-                            <th>Delete order by orderID</th>
+                            <th>Show list of product by their brand</th>
                         </tr>
                         <tr>
                             <th><a href={"/editProduct"}>Edit product</a></th>
-                            <th>Delete order by orderID</th>
+                            <th>Edit product by providing productID</th>
                         </tr>
                         </tbody>
                     </table>

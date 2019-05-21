@@ -20,6 +20,7 @@ export const loginTo = user => {
             email: user.email,
             password: user.password
         }).then(res => {
+            console.log(res);
             return res.data
         })
 };

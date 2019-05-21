@@ -19,7 +19,6 @@ export const deleteProd = prod => {
                     productId: prod.productId
                 }
             }).then(res => {
-            console.log(res)
             return res.data;
         })
 };
@@ -47,7 +46,6 @@ export const editProduct = prod => {
                 productId: prod.productId
             }
         }).then(res => {
-
-            return res;
+            return res.data;
         })
 };

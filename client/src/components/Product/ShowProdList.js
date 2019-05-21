@@ -24,16 +24,17 @@ class ShowProdList extends React.Component {
         {
             return (
                 <Fragment>
-                    <div className={"container"}>
+                    <div >
                         <center>
                             <h2>List of products:</h2>
                         </center>
-                        <table className={"striped"}>
+                        <table className={"ui fixed table"}>
                             <thead>
                             <tr>
                                 <th>Brand</th>
                                 <th>Model</th>
                                 <th>Price</th>
+                                <th>Product_ID</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -42,6 +43,7 @@ class ShowProdList extends React.Component {
                                     <th>{product.Brand}</th>
                                     <th>{product.Model}</th>
                                     <th>{product.Price}</th>
+                                    <th>{product._id}</th>
                                 </tr>
                             ))}
                             </tbody>
