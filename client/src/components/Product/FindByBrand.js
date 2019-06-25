@@ -8,7 +8,8 @@ class FindByBrand extends Component {
         this.state = {
             Brand: '',
             products: [],
-            error: ''
+            error: '',
+            descSort: false
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -63,6 +64,47 @@ class FindByBrand extends Component {
             return '';
         }
     }
+    sortColumn(event, sortKey) {
+        if (!this.state.descSort) {
+            this.onSortDesc(event, sortKey);
+            this.setState({descSort:true})
+        } else {
+            this.onSortAsc(event, sortKey);
+            this.setState({descSort:false})
+        }
+
+    }
+
+    onSortAsc(event, sortKey) {
+        const products = this.state.products;
+        this.setState({products: products.sort((a, b) => a[sortKey].toLowerCase() > b[sortKey].toLowerCase())});
+    }
+
+    onSortDesc(event, sortKey) {
+        const products = this.state.products;
+        this.setState({products: products.sort((a, b) => a[sortKey].toLowerCase() < b[sortKey].toLowerCase())});
+    }
+
+    sortColumn2(event, sortKey) {
+        if (!this.state.descSort) {
+            this.onSortDesc2(event, sortKey);
+            this.setState({descSort:true})
+        } else {
+            this.onSortAsc2(event, sortKey);
+            this.setState({descSort:false})
+        }
+
+    }
+
+    onSortAsc2(event, sortKey) {
+        const products = this.state.products;
+        this.setState({products: products.sort((a, b) => a[sortKey] > b[sortKey])});
+    }
+
+    onSortDesc2(event, sortKey) {
+        const products = this.state.products;
+        this.setState({products: products.sort((a, b) => a[sortKey] < b[sortKey])});
+    }
 
     render() {
         const {products} = this.state;
@@ -92,10 +134,10 @@ class FindByBrand extends Component {
                             <table className={"ui fixed table"}>
                                 <thead>
                                 <tr>
-                                    <th>Brand</th>
-                                    <th>Model</th>
-                                    <th>Price</th>
-                                    <th>Product_ID</th>
+                                    <th onClick={e => this.sortColumn(e, 'Brand')}>Brand</th>
+                                    <th onClick={e => this.sortColumn(e, 'Model')}>Model</th>
+                                    <th onClick={e => this.sortColumn2(e, 'Price')}>Price</th>
+                                    <th onClick={e => this.sortColumn(e, '_id')}>Product_ID</th>
                                 </tr>
                                 </thead>
                                 <tbody>
